@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
 
     <title>Pokèdex</title>
 </head>
+
 <body onload="loadPokemon()">
-    <div id="pokedex">
-        <h1 id="pokemon-name">Name</h1>
+
+    <header class="header">
+        <span class="header-title">Pokedex</span>
+        <input type="text" id="search-pokemon" placeholder="Search Name or ID...">
+    </header>
+
+    <div id="all-pokemons" class="all-pokemons-container">
+
     </div>
-    
+
+
+    <!--  
+    <div id="pokedex">
+
+    </div>
+
+    <div class="info-container">
+
+    </div> -->
+
 </body>
+
 </html>
