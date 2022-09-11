@@ -39,26 +39,47 @@ body {
 .pokemon-info-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
+    height: 100%;
+    width: 50%;
 }
+
 
 #pokemon-name {
     font-size: 28px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 152px;
 }
 
-.green-btn-type {
-    padding: 5px 20px;
+.pokemon-type {
+    padding: 4px 20px;
     border-radius: 16px;
-    background-color: #BFF6B2;
-    font-size: 18px;
+    font-size: 17px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-#pokemon-img {
+.pokemon-img-container {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 50%;
+}
+
+.pokemon-img-container img {
+    display: flex;
     height: 150px;
     width: 150px;
-    margin-top: 75px;
+    margin-bottom: 10px;
+}
+
+.pokemon-info-container p {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
 }
 
 .pokemon-info-container span {
@@ -69,19 +90,82 @@ body {
 
 .pokemon-overview-container {
     width: 300px;
-    height: 250px;
+    height: 230px;
     display: flex;
-    background: linear-gradient(to bottom right, #78cd5488, #78cd54);
     border-radius: 10px;
     box-shadow: 0px 4px 8px 1px rgb(0, 0, 0, 0.2);
     padding: 10px;
     margin: 15px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.pokemon-overview-container:hover {
+    transform: scale(1.1);
 }
 
 
+/*background color container start*/
+.bg-container-grass {
+    background: linear-gradient(to bottom right, #78cd5488, #78cd54);
+}
 
+.bg-container-fire {
+    background: linear-gradient(to bottom right, #E2595988, #E25959);
+}
 
+.bg-container-water {
+    background: linear-gradient(to bottom right, #5781E788, #5781E7);
+}
 
+.bg-container-bug {
+    background: linear-gradient(to bottom right, #d7e38488, #d7e384);
+}
+
+.bg-container-normal {
+    background: linear-gradient(to bottom right, #e0daca88, #e0daca);
+}
+
+.bg-container-poison {
+    background: linear-gradient(to bottom right, #e85aad88, #e85aad);
+}
+
+.bg-container-electric {
+    background: linear-gradient(to bottom right, #d9b43f88, #d9b43f);
+}
+
+.bg-container-ground {
+    background: linear-gradient(to bottom right, #e6d8b188, #e6d8b1);
+}
+
+.bg-container-fairy {
+    background: linear-gradient(to bottom right, #eb8adb88, #eb8adb);
+}
+
+.bg-container-psychic {
+    background: linear-gradient(to bottom right, #cc9da788, #cc9da7);
+}
+
+.bg-container-fighting {
+    background: linear-gradient(to bottom right, #ad6f6888, #ad6f68);
+}
+
+.bg-container-rock {
+    background: linear-gradient(to bottom right, #b3a47288, #b3a472);
+}
+
+.bg-container-ghost {
+    background: linear-gradient(to bottom right, #896eba88, #896eba);
+}
+
+.bg-container-ice {
+    background: linear-gradient(to bottom right, #a0e8e688, #a0e8e6);
+}
+
+.bg-container-dragon {
+    background: linear-gradient(to bottom right, #b39fe388, #b39fe3);
+}
+/* background color container end*/
 
 
 

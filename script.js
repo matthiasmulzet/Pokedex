@@ -3,7 +3,7 @@ let currentPokemonName;
 let responseAsJson;
 
 async function loadPokemon() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=100';
+    let url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=150';
     let response = await fetch(url);
     responseAsJson = await response.json();
     let arrayLength = responseAsJson['results'].length;
@@ -12,6 +12,10 @@ async function loadPokemon() {
     let urlWithName = `https://pokeapi.co/api/v2/pokemon/${currentPokemonName}`;
     let responseWithName = await fetch(urlWithName);
     currentPokemon = await responseWithName.json();
+
+
+
+
 
     console.log(responseAsJson);
     console.log(currentPokemon);
@@ -27,46 +31,63 @@ async function loadPokemon() {
 
         console.log(pokemonForLoop);
 
+        let actualId = pokemonForLoop['id'];
+
         let actualImg = pokemonForLoop['sprites']['other']['official-artwork']['front_default'];
 
         let actualType = pokemonForLoop['types'][0]['type']['name'];
 
         let actualSort;
 
+
         if (pokemonForLoop['types'][1]) {
             actualSort = pokemonForLoop['types'][1]['type']['name'];
 
-            document.getElementById('all-pokemons').innerHTML += /*html*/ `
-            <div class="pokemon-overview-container">
-                <div class="pokemon-info-container">
-                    <span id="pokemon-name">${actualName}</span>
-                    <span class="green-btn-type" id="pokemon-type">${actualType}</span>
-                    <span class="green-btn-type" id="pokemon-sort">${actualSort}</span>
-                </div>
-                <img id="pokemon-img" src="${actualImg}">
-            </div>`;
+            document.getElementById('all-pokemons').innerHTML += showOverviewPokemonWithSort(actualId, actualName, actualType, actualSort, actualImg);
         }
 
-        else{
-            document.getElementById('all-pokemons').innerHTML += /*html*/ `
-            <div class="pokemon-overview-container">
-                <div class="pokemon-info-container">
-                    <span id="pokemon-name">${actualName}</span>
-                    <span class="green-btn-type" id="pokemon-type">${actualType}</span>
-                </div>
-                <img id="pokemon-img" src="${actualImg}">
-            </div>`;
+        else {
+            document.getElementById('all-pokemons').innerHTML += showOverviewPokemonWithoutSort(actualId, actualName, actualType, actualImg);
         }
 
+        showActualBgColor(actualId);
     }
 
-    // renderPokemonInfo();
 }
 
 
-function renderPokemonInfo() {
-    document.getElementById('pokemon-name').innerHTML = currentPokemonName.charAt(0).toUpperCase() + currentPokemonName.slice(1);
-    document.getElementById('pokemon-img').src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-    document.getElementById('pokemon-type').innerHTML = currentPokemon['types'][0]['type']['name'].charAt(0).toUpperCase() + currentPokemon['types'][0]['type']['name'].slice(1);
-    document.getElementById('pokemon-sort').innerHTML = currentPokemon['types'][1]['type']['name'].charAt(0).toUpperCase() + currentPokemon['types'][1]['type']['name'].slice(1);
+function showActualBgColor(actualId) {
+    let bgType = document.getElementById(`pokemon-type-${actualId}`).innerHTML;
+    document.getElementById(`pokemon-overview-container-${actualId}`).classList.add(`bg-container-${bgType}`);
+}
+
+
+function showOverviewPokemonWithoutSort(actualId, actualName, actualType, actualImg) {
+    return /*html*/ `
+    <div class="pokemon-overview-container" id="pokemon-overview-container-${actualId}">
+        <div class="pokemon-info-container">
+            <p id="pokemon-id-${actualId}"># ${actualId}</p>
+            <span id="pokemon-name">${actualName.charAt(0).toUpperCase() + actualName.slice(1)}</span>
+            <span class="pokemon-type" id="pokemon-type-${actualId}">${actualType}</span>
+        </div>
+        <div class="pokemon-img-container">
+            <img id="pokemon-img" src="${actualImg}">
+        </div>
+    </div>`;
+}
+
+
+function showOverviewPokemonWithSort(actualId, actualName, actualType, actualSort, actualImg) {
+    return /*html*/ `
+    <div class="pokemon-overview-container" id="pokemon-overview-container-${actualId}">
+        <div class="pokemon-info-container">
+            <p id="pokemon-id-${actualId}"># ${actualId}</p>
+            <span id="pokemon-name">${actualName.charAt(0).toUpperCase() + actualName.slice(1)}</span>
+            <span class="pokemon-type" id="pokemon-type-${actualId}">${actualType}</span>
+            <span class="pokemon-type">${actualSort}</span>
+        </div>
+        <div class="pokemon-img-container">
+            <img id="pokemon-img" src="${actualImg}">
+        </div>
+    </div>`;
 }
