@@ -15,26 +15,8 @@
 
 <body onload="loadPokemon()">
 
-    <div class="overlay-pokemon">
+    <div onclick="closeDetailView()" id="overlay">
 
-        <div class="pokemon-big-overview-container">
-            <div class="arrow-and-id">
-                <img class="back-arrow" src="img/arrow-left-solid.svg" alt="back-arrow">
-                <span># 1</span>
-            </div>
-            <span class="pokemon-overview-name" id="pokemon-name-${i}">Bulbasaur</span>
-            <div class="overview-type-sort">
-                <span class="pokemon-type" id="pokemon-type-${i}">grass</span>
-                <span class="pokemon-type" id="pokemon-sort-${i}">poison</span>
-            </div>
-            <div class="pokemon-overview-img-container">
-                <img id="pokemon-img-${i}"
-                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png">
-            </div>
-        </div>
-        <div class="pokemon-infos">
-
-        </div>
     </div>
 
     <header class="header">
