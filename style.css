@@ -21,6 +21,7 @@ body {
 .header-title {
     font-size: 40px;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 #search-pokemon {
@@ -270,6 +271,18 @@ body {
 
 progress {
     width: 110px;
+    height: 12px;
+    background: white;
+}
+
+progress::-webkit-progress-value {
+    background: #69d33c;
+    border-radius: 100px;
+}
+
+progress::-webkit-progress-bar {
+    background: lightgrey;
+    border-radius: 100px;
 }
 
 /*styling overlay pokemon view end*/
@@ -280,93 +293,120 @@ progress {
     background: linear-gradient(to bottom right, #78cd5488, #78cd54);
 }
 
+.bg-grass {
+    background-color: #78cd54;
+}
+
 .bg-container-fire {
     background: linear-gradient(to bottom right, #E2595988, #E25959);
+}
+
+.bg-fire {
+    background-color: #E25959;
 }
 
 .bg-container-water {
     background: linear-gradient(to bottom right, #5781E788, #5781E7);
 }
 
+.bg-water {
+    background-color: #5781E7;
+}
+
 .bg-container-bug {
     background: linear-gradient(to bottom right, #d7e38488, #d7e384);
+}
+
+.bg-bug {
+    background-color: #d7e384;
 }
 
 .bg-container-normal {
     background: linear-gradient(to bottom right, #e0daca88, #e0daca);
 }
 
+.bg-normal {
+    background-color: #e0daca;
+}
+
 .bg-container-poison {
     background: linear-gradient(to bottom right, #e85aad88, #e85aad);
+}
+
+.bg-poison {
+    background-color: #e85aad;
 }
 
 .bg-container-electric {
     background: linear-gradient(to bottom right, #d9b43f88, #d9b43f);
 }
 
+.bg-electric {
+    background-color: #d9b43f;
+}
+
 .bg-container-ground {
     background: linear-gradient(to bottom right, #e6d8b188, #e6d8b1);
+}
+
+.bg-ground {
+    background-color: #e6d8b1;
 }
 
 .bg-container-fairy {
     background: linear-gradient(to bottom right, #eb8adb88, #eb8adb);
 }
 
+.bg-fairy {
+    background-color: #eb8adb;
+}
+
 .bg-container-psychic {
     background: linear-gradient(to bottom right, #cc9da788, #cc9da7);
+}
+
+.bg-psychic {
+    background-color: #cc9da7;
 }
 
 .bg-container-fighting {
     background: linear-gradient(to bottom right, #ad6f6888, #ad6f68);
 }
 
+.bg-fighting {
+    background-color: #ad6f68;
+}
+
 .bg-container-rock {
     background: linear-gradient(to bottom right, #b3a47288, #b3a472);
+}
+
+.bg-rock {
+    background-color: #b3a472;
 }
 
 .bg-container-ghost {
     background: linear-gradient(to bottom right, #896eba88, #896eba);
 }
 
+.bg-ghost {
+    background-color: #896eba;
+}
+
 .bg-container-ice {
     background: linear-gradient(to bottom right, #a0e8e688, #a0e8e6);
+}
+
+.bg-ice {
+    background-color: #a0e8e6;
 }
 
 .bg-container-dragon {
     background: linear-gradient(to bottom right, #b39fe388, #b39fe3);
 }
 
+.bg-dragon {
+    background-color: #b39fe3;
+}
+
 /* background color container end*/
-
-
-
-
-
-
-
-
-
-
-/*
-#pokedex {
-    min-height: 50vh;
-    background-color: #FB6C6C;
-    color: white;
-    display: flex;
-    padding: 24px;
-}
-
-.info-container {
-    background-color: white;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    height: 100px;
-    min-height: 100px;
-    margin-top: -40px;
-}
-
-
-#pokemon-name {
-    height: 300px;
-    width: 300px;
-} */

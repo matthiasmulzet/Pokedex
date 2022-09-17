@@ -60,11 +60,17 @@ function showSearchPokemons() {
 }
 
 
+function showStartPage() {
+    document.getElementById('search-pokemon').value = '';
+    showSearchPokemons();
+}
+
+
 function generatePokemons(i) {
     document.getElementById('all-pokemons').innerHTML += showOverviewPokemonWithSort(i);
     setPokemonData(i);
 
-    showActualBgColor(i);
+    showActualBgContainerColorlor(i);
 }
 
 
@@ -82,9 +88,15 @@ function setPokemonData(i) {
 }
 
 
-function showActualBgColor(i) {
+function showActualBgContainerColorlor(i) {
     let bgType = document.getElementById(`pokemon-type-${i}`).innerHTML;
     document.getElementById(`pokemon-overview-container-${i}`).classList.add(`bg-container-${bgType}`);
+}
+
+
+function showActualBgColor(i) {
+    let bgType = document.getElementById(`pokemon-type-${i}`).innerHTML;
+    document.getElementById(`pokemon-overview-container-${i}`).classList.add(`bg-${bgType}`);
 }
 
 
@@ -99,6 +111,15 @@ function showDetailViewPokemon(i) {
     }
     let newAbilitieString = document.getElementById('abilities').innerHTML.slice(0, -2);
     document.getElementById('abilities').innerHTML = newAbilitieString;
+
+    let statsLength = pokemons[i]['stats'].length;
+
+    for (let sL = 0; sL < statsLength; sL++) {
+        document.getElementById(`stat-${sL}`).innerHTML = pokemons[i]['stats'][sL]['base_stat'];
+        let valueProgressBar = document.getElementById(`stat-${sL}`).innerHTML = pokemons[i]['stats'][sL]['base_stat'];
+        document.getElementById(`progress-bar-${sL}`).value = valueProgressBar;
+    }
+
 
     setPokemonData(i);
     showActualBgColor(i);
@@ -148,6 +169,11 @@ function showStats() {
 }
 
 
+
+
+// ----------------------------------- HTML Templates ------------------------------------------------ //
+
+
 function detailViewTemplate(i) {
     return /*html*/ `
         <div onclick="save(event)" class="pokemon-big-overview-container" id="pokemon-overview-container-${i}">
@@ -193,33 +219,33 @@ function detailViewTemplate(i) {
             <table id="table-stats"  class="table-stats d-none">
                 <tr>
                     <td>HP</td>
-                    <td><progress value="45" max="100"></progress></td>
-                    <td>45%</td>
+                    <td><progress id="progress-bar-0" value="" max="100"></progress></td>
+                    <td id="stat-0"></td>
                 </tr>
                 <tr>
-                    <td>Attacke</td>
-                    <td><progress value="49" max="100"></progress></td>
-                    <td>49%</td>
+                    <td>Attack</td>
+                    <td><progress id="progress-bar-1" value="" max="100"></progress></td>
+                    <td id="stat-1"></td>
                 </tr>
                 <tr>
                     <td>Defense</td>
-                    <td><progress value="49" max="100"></progress></td>
-                    <td>49%</td>
+                    <td><progress id="progress-bar-2" value="" max="100"></progress></td>
+                    <td id="stat-2"></td>
                 </tr>
                 <tr>
                     <td>Special Attack</td>
-                    <td><progress value="65" max="100"></progress></td>
-                    <td>65%</td>
+                    <td><progress id="progress-bar-3" value="" max="100"></progress></td>
+                    <td id="stat-3"></td>
                 </tr>
                 <tr>
                     <td>Special Defense</td>
-                    <td><progress value="65" max="100"></progress></td>
-                    <td>65%</td>
+                    <td><progress id="progress-bar-4" value="" max="100"></progress></td>
+                    <td id="stat-4"></td>
                 </tr>
                 <tr>
                     <td>Speed</td>
-                    <td><progress value="45" max="100"></progress></td>
-                    <td>45%</td>
+                    <td><progress id="progress-bar-5" value="" max="100"></progress></td>
+                    <td id="stat-5"></td>
                 </tr>
             </table>
         </div>`;
