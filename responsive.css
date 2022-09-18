@@ -1,0 +1,136 @@
+@media (max-width: 720px) {
+    .header {
+        justify-content: space-between;
+    }
+
+    .pokemon-overview-container {
+        width: 205px;
+        height: 220px;
+        margin: 7px;
+    }
+
+    .pokemon-overview-container:hover {
+        transform: scale(1.03);
+    }
+
+    .pokemon-info-container {
+        width: 38%;
+    }
+
+    .pokemon-info-container p {
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+    .pokemon-info-container span {
+        margin-bottom: 8px;
+    }
+
+    .pokemon-name {
+        font-size: 23px;
+        margin-top: 0px;
+    }
+
+    .pokemon-type {
+        padding: 3px 14px;
+        font-size: 14px;
+    }
+
+    .pokemon-img-container img {
+        height: 130px;
+        width: 130px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    #search-pokemon {
+        width: 150px;
+        margin-right: 5px;
+    }
+
+    .header-title {
+        margin-left: 5px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .d-none-400px {
+        display: none !important;
+    }
+
+    .header-title {
+        margin-left: 10px;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .pokemon-big-overview-container {
+        width: 240px;
+        height: 240px;
+    }
+
+    .pokemon-infos {
+        width: 240px;
+        height: 260px;
+    }
+
+    .back-arrow {
+        height: 16px;
+        width: 16px;
+    }
+
+    .arrow-and-id span {
+        font-size: 16px;
+    }
+
+    .pokemon-overview-name {
+        font-size: 22px;
+    }
+
+    .overview-type-sort span {
+        padding: 3px 10px;
+        font-size: 12px;
+        margin-right: 7px;
+    }
+
+    .pokemon-overview-img-container img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .pokemon-infos {
+        margin-top: -35px;
+    }
+
+    .about-stats-container {
+        margin-top: 15px;
+    }
+
+    .about-stats-container span {
+        font-size: 17px;
+    }
+
+    .table-about {
+        border-spacing: 15px;
+        font-size: 15px;
+        margin-top: 23px;
+    }
+
+    .table-stats {
+        border-spacing: 7px;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    progress {
+        width: 100px;
+        height: 10px;
+    }
+
+    .table-stats td:nth-child(1) {
+        width: 66px;
+    }
+}

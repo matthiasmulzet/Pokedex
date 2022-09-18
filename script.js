@@ -8,50 +8,57 @@ let next20Pokemons;
 
 async function loadPokemon() {
     document.getElementById('all-pokemons').innerHTML = '';
+
     for (let i = 0; i < 20; i++) {
-        const pokedexUrl = url + (i + 1);
-        let response = await fetch(pokedexUrl);
-        let currentPokemon = await response.json();
-        pokemons.push(currentPokemon);
-        console.log(pokemons);
-        generatePokemons(i);
-        actualShowedPokemons = i;
+
+        await loadAndShowActualPokemons(i);
+
     }
     next20Pokemons = actualShowedPokemons;
 }
 
 
 async function loadMorePokemons() {
+    pokemonsAlreadyLoaded();
+
+    for (let i = (next20Pokemons + 1); i < (next20Pokemons + 21); i++) {
+        await loadAndShowActualPokemons(i);
+    }
+    next20Pokemons = actualShowedPokemons;
+}
+
+
+async function loadAndShowActualPokemons(i) {
+    let pokedexUrl = url + (i + 1); //actual pokemon will be loaded
+    let response = await fetch(pokedexUrl);
+    let currentPokemon = await response.json();
+
+    pokemons.push(currentPokemon);
+    generatePokemons(i);
+    actualShowedPokemons = i;
+}
+
+
+function pokemonsAlreadyLoaded() {
     if (document.getElementById('search-pokemon').value !== '') {
         document.getElementById('search-pokemon').value = '';
         document.getElementById('all-pokemons').innerHTML = '';
+
         for (let i = 0; i < pokemons.length; i++) {
             generatePokemons(i);
             actualShowedPokemons = i;
         }
         next20Pokemons = actualShowedPokemons;
     }
-
-    for (let i = (next20Pokemons + 1); i < (next20Pokemons + 21); i++) {
-        pokedexUrl = url + (i + 1);
-        let response = await fetch(pokedexUrl);
-        let currentPokemon = await response.json();
-        pokemons.push(currentPokemon);
-        generatePokemons(i);
-        actualShowedPokemons = i;
-    }
-    next20Pokemons = actualShowedPokemons;
 }
 
 
 function showSearchPokemons() {
     let search = document.getElementById('search-pokemon').value;
     search = search.toLowerCase();
-
     document.getElementById('all-pokemons').innerHTML = '';
 
     for (let i = 0; i < pokemons.length; i++) {
-
         let actualName = pokemons[i]['name'];
         if (actualName.includes(search)) {
             generatePokemons(i);
@@ -105,46 +112,37 @@ function showDetailViewPokemon(i) {
     document.getElementById('overlay').innerHTML = detailViewTemplate(i);
     document.getElementById('height').innerHTML = (pokemons[i]['height'] / 10).toFixed(2) + ` m`;
     document.getElementById('weight').innerHTML = (pokemons[i]['weight'] / 10).toFixed(1) + ` kg`;
+
+    showAbilities(i);
+    showAllStats(i);
+    setPokemonData(i);
+    showActualBgColor(i);
+}
+
+
+function showAbilities(i) {
     let abilitiesLength = pokemons[i]['abilities'].length;
     for (let aL = 0; aL < abilitiesLength; aL++) {
         document.getElementById('abilities').innerHTML += pokemons[i]['abilities'][aL]['ability']['name'] + `, `;
     }
     let newAbilitieString = document.getElementById('abilities').innerHTML.slice(0, -2);
     document.getElementById('abilities').innerHTML = newAbilitieString;
+}
 
+
+function showAllStats(i) {
     let statsLength = pokemons[i]['stats'].length;
-
     for (let sL = 0; sL < statsLength; sL++) {
         document.getElementById(`stat-${sL}`).innerHTML = pokemons[i]['stats'][sL]['base_stat'];
         let valueProgressBar = document.getElementById(`stat-${sL}`).innerHTML = pokemons[i]['stats'][sL]['base_stat'];
         document.getElementById(`progress-bar-${sL}`).value = valueProgressBar;
     }
-
-
-    setPokemonData(i);
-    showActualBgColor(i);
 }
 
 
 function closeDetailView() {
     document.getElementById('overlay').classList.remove('overlay-pokemon');
     document.getElementById('overlay').innerHTML = '';
-}
-
-
-function showOverviewPokemonWithSort(i) {
-    return /*html*/ `
-    <div onclick="showDetailViewPokemon(${i})" class="pokemon-overview-container" id="pokemon-overview-container-${i}">
-        <div class="pokemon-info-container">
-            <p id="pokemon-id-${i}"># ${i + 1}</p>
-            <span class="pokemon-name" id="pokemon-name-${i}"></span>
-            <span class="pokemon-type" id="pokemon-type-${i}">${i}</span>
-            <span class="pokemon-type" id="pokemon-sort-${i}"></span>
-        </div>
-        <div class="pokemon-img-container">
-            <img id="pokemon-img-${i}">
-        </div>
-    </div>`;
 }
 
 
@@ -169,9 +167,22 @@ function showStats() {
 }
 
 
-
-
 // ----------------------------------- HTML Templates ------------------------------------------------ //
+
+function showOverviewPokemonWithSort(i) {
+    return /*html*/ `
+    <div onclick="showDetailViewPokemon(${i})" class="pokemon-overview-container" id="pokemon-overview-container-${i}">
+        <div class="pokemon-info-container">
+            <p id="pokemon-id-${i}"># ${i + 1}</p>
+            <span class="pokemon-name" id="pokemon-name-${i}"></span>
+            <span class="pokemon-type" id="pokemon-type-${i}">${i}</span>
+            <span class="pokemon-type" id="pokemon-sort-${i}"></span>
+        </div>
+        <div class="pokemon-img-container">
+            <img id="pokemon-img-${i}">
+        </div>
+    </div>`;
+}
 
 
 function detailViewTemplate(i) {

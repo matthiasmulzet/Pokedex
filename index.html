@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="img/pokeball.png">
+
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
 
@@ -15,15 +18,17 @@
 
 <body onload="loadPokemon()">
 
+    <!--overlay whole page, detail view pokemon -->
     <div onclick="closeDetailView()" id="overlay">
 
     </div>
 
     <header class="header">
         <span onclick="showStartPage()" class="header-title">Pokedex</span>
-        <input onkeyup="showSearchPokemons()" type="text" id="search-pokemon" placeholder="Search Name or ID...">
+        <input onkeyup="showSearchPokemons()" type="text" class="d-none-400px" id="search-pokemon" placeholder="Search">
     </header>
 
+    <!-- all Pokemons will be load in this container -->
     <div id="all-pokemons" class="all-pokemons-container">
 
     </div>
